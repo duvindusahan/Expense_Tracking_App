@@ -61,3 +61,6 @@ def index(request):
 
 def register(request):
     return render(request, 'home/register.html')
+
+def password(request):
+    return render(request,'home/password.html')
