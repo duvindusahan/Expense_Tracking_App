@@ -45,3 +45,5 @@
 <body>
     <div class="login-container">
         <h2>Expense Tracker by DataFlair</h2>
+        <form method="post" action="{% url 'handlelogin' %}">
+            {% csrf_token %}
