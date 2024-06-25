@@ -47,3 +47,7 @@
         <h2>Expense Tracker by DataFlair Create Account</h2>
         <form method="post" action="{% url 'handleSignup' %}">
             {% csrf_token %}
+            <div class="form-group">
+                <label for="uname">User Name</label>
+                <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter User Name" required>
+            </div>
