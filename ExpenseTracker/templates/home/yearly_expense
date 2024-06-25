@@ -59,7 +59,16 @@
                     </div>
                 </div>
             </li>
-              
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Info -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'info' %}">
+                    <i class="fas fa-fw fa-info-circle"></i>
+                    <span>Info</span>
+                </a>
+            </li>
+            
         </ul>
     </div>
     
