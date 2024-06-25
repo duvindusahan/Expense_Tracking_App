@@ -207,3 +207,9 @@ def addmoney_update(request, id):
             messages.success(request, "Transaction updated successfully")
             return redirect("/index")
     return redirect("/home")  
+
+def expense_edit(request, id):
+    if request.session.has_key('is_logged'):
+        addmoney_info = Addmoney_info.objects.get(id=id)
+        return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
+    return redirect("/home")
