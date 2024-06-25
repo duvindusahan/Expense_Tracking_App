@@ -7,6 +7,8 @@ from .models import Addmoney_info, UserProfile
 from django.core.paginator import Paginator
 from django.db.models import Sum, Q
 import datetime
+from django.http import JsonResponse
+from .models import Addmoney_info
 
 def home(request):
     if request.session.has_key('is_logged'):
