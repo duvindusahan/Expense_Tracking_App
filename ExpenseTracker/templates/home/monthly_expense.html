@@ -50,3 +50,10 @@
                     <i class="fas fa-fw fa-book"></i>
                     <span>Record</span>
                 </a>
+                <div id="collapseRecords" class="collapse" aria-labelledby="headingRecords" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'expense_month' %}">Monthly</a>
+                        <a class="collapse-item" href="{% url 'info_year' %}">Yearly</a>
+                    </div>
+                </div>
+            </li>
