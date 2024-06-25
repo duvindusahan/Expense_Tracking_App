@@ -25,6 +25,10 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-custom sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
+                <div class="sidebar-brand-text mx-3">Track My Spend</div>
+            </a>
+            
         </ul>
     </div>
     
