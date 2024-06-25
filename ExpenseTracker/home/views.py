@@ -194,3 +194,16 @@ def addmoney_submission(request):
             messages.success(request, "Transaction added successfully")
             return redirect('/index')
     return redirect('/index')
+
+def addmoney_update(request, id):
+    if request.session.has_key('is_logged'):
+        if request.method == "POST":
+            add = Addmoney_info.objects.get(id=id)
+            add.add_money = request.POST["add_money"]
+            add.quantity = request.POST["quantity"]
+            add.Date = request.POST["Date"]
+            add.Category = request.POST["Category"]
+            add.save()
+            messages.success(request, "Transaction updated successfully")
+            return redirect("/index")
+    return redirect("/home")  
