@@ -7,3 +7,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 </head>
+<body>
+    <div class="container emp-profile">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Content goes here -->
+        </form>
+    </div>
+</body>
+</html>    
