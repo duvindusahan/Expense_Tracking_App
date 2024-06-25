@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Monthly Expense - Expense Tracker</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
-        <style>
-                    .bg-custom {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Expense - Expense Tracker</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        .bg-custom {
             background-color: #4e73df;
         }
+        .sidebar {
+            background-color: #3561e2;
+        }
+
         .sidebar .nav-item .nav-link {
             color: white;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .sidebar .nav-item .nav-link:hover {
+            background-color: #224abe;
+            color: #ffffff;
+        }
+
         .sidebar .nav-item .nav-link.active {
             color: #4e73df;
             background-color: white;
+        }
+
+        .sidebar .sidebar-brand {
+            background-color: #224abe;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sidebar .sidebar-brand:hover {
+            background-color: #1a3d9f;
+            color: #ffffff;
+        }
+
+        .sidebar .sidebar-divider {
+            border-top: 1px solid #476cd1;
+        }
+
+        .card-header-custom {
+            background-color: #4e73df;
+            color: white;
         }
     </style>
 </head>
