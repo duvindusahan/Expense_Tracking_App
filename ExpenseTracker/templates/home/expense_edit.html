@@ -9,3 +9,11 @@
     <body>
         <div class="container mt-5">
             <h2>Edit Expense</h2>
+            <form method="post" action="{% url 'addmoney_update' addmoney_info.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="add_money">Type</label>
+                    <select class="form-control" id="add_money" name="add_money">
+                        <option value="Expense" {% if addmoney_info.add_money == "Expense" %}selected{% endif %}>Expense</option>
+                        <option value="Income" {% if addmoney_info.add_money == "Income" %}selected{% endif %}>Income</option>
+                    </select>
