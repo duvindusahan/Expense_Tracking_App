@@ -367,3 +367,33 @@ def info_year(request):
         }
         return render(request, 'home/yearly_expense.html', context)
     return redirect('home')
+
+def expense_month(request):
+    if request.session.has_key('is_logged'):
+        user_id = request.session["user_id"]
+        user = User.objects.get(id=user_id)
+        todays_date = datetime.date.today()
+        one_month_ago = todays_date - datetime.timedelta(days=30)
+        addmoney_info = Addmoney_info.objects.filter(user=user, Date__gte=one_month_ago, Date__lte=todays_date)
+        
+        total_expense = addmoney_info.filter(add_money="Expense").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        total_income = addmoney_info.filter(add_money="Income").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        amount_saved = total_income - total_expense
+        overspent_amount = max(0, total_expense - user.userprofile.Savings)
+        
+        # Prepare data for the pie chart
+        pie_chart_data = addmoney_info.values('Category').annotate(total_amount=Sum('quantity')).order_by('Category')
+        pie_chart_labels = [entry['Category'] for entry in pie_chart_data]
+        pie_chart_values = [entry['total_amount'] or 0 for entry in pie_chart_data]
+
+        context = {
+            'user_profile': user.userprofile,
+            'total_expense': total_expense,
+            'amount_saved': amount_saved,
+            'overspent_amount': overspent_amount,
+            'transactions': addmoney_info,
+            'pie_chart_labels': pie_chart_labels,
+            'pie_chart_values': pie_chart_values,
+        }
+        return render(request, 'home/monthly_expense.html', context)
+    return redirect('home')
