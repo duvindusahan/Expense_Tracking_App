@@ -11,4 +11,11 @@
         <h2>Add Expense or Income</h2>
         <form method="post" action="{% url 'addmoney_submission' %}">
             {% csrf_token %}
-        
+            <div class="form-group">
+                <label for="add_money">Type</label>
+                <select class="form-control" id="add_money" name="add_money">
+                    <option value="Expense">Expense</option>
+                    <option value="Income">Income</option>
+                </select>
+            </div>
+                
