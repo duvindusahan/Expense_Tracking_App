@@ -8,3 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
 </head>
 <body>
+    <div class="container emp-profile">
+        <form method="post" action="{% url 'profile_update' add.id %}">
+            {% csrf_token %}
+            <!-- Content goes here -->
+    
