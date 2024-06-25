@@ -154,3 +154,21 @@ def handleSignup(request):
         return redirect("/")
     else:
         return HttpResponse('404 - NOT FOUND')
+    
+    def handlelogin(request):
+    if request.method =='POST':
+        # get the post parameters
+        loginuname = request.POST["loginuname"]
+        loginpassword1=request.POST["loginpassword1"]
+        user = authenticate(username=loginuname, password=loginpassword1)
+        if user is not None:
+            dj_login(request, user)
+            request.session['is_logged'] = True
+            user = request.user.id 
+            request.session["user_id"] = user
+            messages.success(request, " Successfully logged in")
+            return redirect('/index')
+        else:
+            messages.error(request," Invalid Credentials, Please try again")  
+            return redirect("/")  
+    return HttpResponse('404-not found')
