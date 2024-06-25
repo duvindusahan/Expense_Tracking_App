@@ -242,3 +242,31 @@ def expense_month(request):
         }
         return render(request, 'home/monthly_expense.html', context)
     return redirect('home')
+
+def stats(request):
+    if request.session.has_key('is_logged') :
+        todays_date = datetime.date.today()
+        one_month_ago = todays_date-datetime.timedelta(days=30)
+        user_id = request.session["user_id"]
+        user1 = User.objects.get(id=user_id)
+        addmoney_info = Addmoney_info.objects.filter(user = user1,Date__gte=one_month_ago,Date__lte=todays_date)
+        sum = 0 
+        for i in addmoney_info:
+            if i.add_money == 'Expense':
+                sum=sum+i.quantity
+        addmoney_info.sum = sum
+        sum1 = 0 
+        for i in addmoney_info:
+            if i.add_money == 'Income':
+                sum1 =sum1+i.quantity
+        addmoney_info.sum1 = sum1
+        x= user1.userprofile.Savings+addmoney_info.sum1 - addmoney_info.sum
+        y= user1.userprofile.Savings+addmoney_info.sum1 - addmoney_info.sum
+        if x<0:
+            messages.warning(request,'Your expenses exceeded your savings')
+            x = 0
+        if x>0:
+            y = 0
+        addmoney_info.x = abs(x)
+        addmoney_info.y = abs(y)
+        return render(request,'home/stats.html',{'addmoney':addmoney_info})
