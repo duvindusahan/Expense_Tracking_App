@@ -397,3 +397,8 @@ def expense_month(request):
         }
         return render(request, 'home/monthly_expense.html', context)
     return redirect('home')
+
+def info(request):
+    if request.session.has_key('is_logged'):
+        return render(request, 'home/info.html')
+    return redirect('home')
