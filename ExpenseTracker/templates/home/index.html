@@ -422,3 +422,86 @@
                 }
             }
         });
+        
+        // Bar Chart Example
+        var ctx = document.getElementById("myBarChart");
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ bar_chart_labels|safe }},
+                datasets: [{
+                    label: "Amount",
+                    backgroundColor: "rgba(78, 115, 223, 1)",
+                    hoverBackgroundColor: "rgba(78, 115, 223, 0.9)",
+                    borderColor: "#4e73df",
+                    data: {{ bar_chart_values|safe }},
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'category'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 7
+                        },
+                        maxBarThickness: 25,
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: 15000,
+                            maxTicksLimit: 5,
+                            padding: 10,
+                            callback: function(value, index, values) {
+                                return 'LKR' + number_format(value);
+                            }
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    titleFontColor: '#6e707e',
+                    titleMarginBottom: 10,
+                    titleFontSize: 14,
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    mode: 'index',
+                    intersect: false,
+                    callbacks: {
+                        label: function(tooltipItem, chart) {
+                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                            return datasetLabel + ': LKR' + number_format(tooltipItem.yLabel);
+                        }
+                    }
+                }
+            }
+        });
