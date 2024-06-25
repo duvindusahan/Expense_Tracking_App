@@ -231,11 +231,11 @@
         var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ["Necessities", "Others"],
+                labels: {{ pie_chart_labels|safe }},
                 datasets: [{
-                    data: [55, 30],
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    data: {{ pie_chart_values|safe }},
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#be2617', '#6c757d'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
             },
