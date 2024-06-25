@@ -155,7 +155,7 @@ def handleSignup(request):
     else:
         return HttpResponse('404 - NOT FOUND')
     
-    def handlelogin(request):
+def handlelogin(request):
     if request.method =='POST':
         # get the post parameters
         loginuname = request.POST["loginuname"]
