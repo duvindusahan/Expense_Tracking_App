@@ -21,3 +21,10 @@
     </style>
 </head>
 <body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-custom sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+        </ul>
+    </div>
+    
