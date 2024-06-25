@@ -11,15 +11,62 @@
         .bg-custom {
             background-color: #4e73df;
         }
+
+        .sidebar {
+            background-color: #3561e2;
+        }
+
         .sidebar .nav-item .nav-link {
             color: white;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .sidebar .nav-item .nav-link:hover {
+            background-color: #224abe;
+            color: #ffffff;
+        }
+
         .sidebar .nav-item .nav-link.active {
             color: #4e73df;
             background-color: white;
         }
+
+        .sidebar .sidebar-brand {
+            background-color: #224abe;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sidebar .sidebar-brand:hover {
+            background-color: #1a3d9f;
+            color: #ffffff;
+        }
+
+        .sidebar .sidebar-divider {
+            border-top: 1px solid #476cd1;
+        }
+
         .expense-card {
             border-left: 5px solid #4e73df;
+        }
+
+        .navbar .dropdown-menu {
+            background-color: #f8f9fc;
+        }
+
+        .navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #4e73df;
+            color: white;
+        }
+        .card-header {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .card-body p {
+            margin-bottom: 0;
         }
     </style>
 </head>
