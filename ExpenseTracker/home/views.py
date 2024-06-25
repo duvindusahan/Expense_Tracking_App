@@ -402,3 +402,17 @@ def info(request):
     if request.session.has_key('is_logged'):
         return render(request, 'home/info.html')
     return redirect('home')
+
+def history(request):
+    transactions = Addmoney_info.objects.filter(is_deleted=False)
+
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
+
+    if from_date and to_date:
+        transactions = transactions.filter(Date__range=[from_date, to_date])
+
+    context = {
+        'transactions': transactions,
+    }
+    return render(request, 'home/history.html', context)
