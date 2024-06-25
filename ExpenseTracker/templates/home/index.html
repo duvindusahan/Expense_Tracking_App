@@ -275,3 +275,40 @@
                                                                     {% endif %}
                                                                     {% for i in page_obj.paginator.page_range %}
                                                                     {% if page_obj.number == i %}
+                                                                    <li class="page-item active">
+                                                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                                                    </li>
+                                                                    {% else %}
+                                                                    <li class="page-item">
+                                                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                                                    </li>
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                    {% if page_obj.has_next %}
+                                                                    <li class="page-item">
+                                                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                                                            <span aria-hidden="true">&rsaquo;</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="page-item">
+                                                                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                                                            <span aria-hidden="true">&raquo;</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    {% endif %}
+                                                                </ul>
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.container-fluid -->
+                            </div>
+                            <!-- End of Main Content -->
+                        </div>
+                        <!-- End of Content Wrapper -->
+                    </div>
+                    <!-- End of Page Wrapper -->
