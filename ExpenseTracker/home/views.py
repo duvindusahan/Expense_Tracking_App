@@ -213,3 +213,11 @@ def expense_edit(request, id):
         addmoney_info = Addmoney_info.objects.get(id=id)
         return render(request, 'home/expense_edit.html', {'addmoney_info': addmoney_info})
     return redirect("/home")
+
+def expense_delete(request, id):
+    if request.session.has_key('is_logged'):
+        addmoney_info = Addmoney_info.objects.get(id=id)
+        addmoney_info.delete()
+        messages.success(request, "Transaction deleted successfully")
+        return redirect("/index")
+    return redirect("/home")  
