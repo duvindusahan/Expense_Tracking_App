@@ -11,12 +11,45 @@
         .bg-custom {
             background-color: #4e73df;
         }
+        .sidebar {
+            background-color: #3561e2;
+        }
+
         .sidebar .nav-item .nav-link {
             color: white;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .sidebar .nav-item .nav-link:hover {
+            background-color: #224abe;
+            color: #ffffff;
+        }
+
         .sidebar .nav-item .nav-link.active {
             color: #4e73df;
             background-color: white;
+        }
+
+        .sidebar .sidebar-brand {
+            background-color: #224abe;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sidebar .sidebar-brand:hover {
+            background-color: #1a3d9f;
+            color: #ffffff;
+        }
+
+        .sidebar .sidebar-divider {
+            border-top: 1px solid #476cd1;
+        }
+
+        .card-header-custom {
+            background-color: #4e73df;
+            color: white;
         }
     </style>
 </head>
