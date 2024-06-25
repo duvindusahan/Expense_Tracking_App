@@ -47,3 +47,7 @@
         <h2>Expense Tracker by DataFlair</h2>
         <form method="post" action="{% url 'handlelogin' %}">
             {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="loginuname" placeholder="Enter user name" required>
+            </div>
