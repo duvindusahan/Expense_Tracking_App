@@ -17,3 +17,8 @@
                         <option value="Expense" {% if addmoney_info.add_money == "Expense" %}selected{% endif %}>Expense</option>
                         <option value="Income" {% if addmoney_info.add_money == "Income" %}selected{% endif %}>Income</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Amount</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" value="{{ addmoney_info.quantity }}" required>
+                </div>
