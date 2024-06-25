@@ -116,3 +116,41 @@ def profile_update(request,id):
             user.save()
             return redirect("/profile")
     return redirect("/home") 
+
+def handleSignup(request):
+    if request.method == 'POST':
+        # Get the post parameters
+        uname = request.POST["uname"]
+        fname = request.POST["fname"]
+        lname = request.POST["lname"]
+        email = request.POST["email"]
+        profession = request.POST['profession']
+        Savings = request.POST['Savings']
+        income = request.POST['income']
+        pass1 = request.POST["pass1"]
+        pass2 = request.POST["pass2"]
+        profile = UserProfile(Savings=Savings, profession=profession, income=income)
+        # Check for errors in input
+        if User.objects.filter(username=uname).exists():
+            messages.error(request, "Username already taken, Try something else!!!")
+            return redirect("/register")
+        if len(uname) > 15:
+            messages.error(request, "Username must be max 15 characters, Please try again")
+            return redirect("/register")
+        if not uname.isalnum():
+            messages.error(request, "Username should only contain letters and numbers, Please try again")
+            return redirect("/register")
+        if pass1 != pass2:
+            messages.error(request, "Passwords do not match, Please try again")
+            return redirect("/register")
+        # Create the user
+        user = User.objects.create_user(uname, email, pass1)
+        user.first_name = fname
+        user.last_name = lname
+        user.save()
+        profile.user = user
+        profile.save()
+        messages.success(request, "Your account has been successfully created")
+        return redirect("/")
+    else:
+        return HttpResponse('404 - NOT FOUND')
