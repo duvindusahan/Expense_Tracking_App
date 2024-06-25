@@ -221,3 +221,24 @@ def expense_delete(request, id):
         messages.success(request, "Transaction deleted successfully")
         return redirect("/index")
     return redirect("/home")  
+
+def expense_month(request):
+    if request.session.has_key('is_logged'):
+        user_id = request.session["user_id"]
+        user = User.objects.get(id=user_id)
+        todays_date = datetime.date.today()
+        one_month_ago = todays_date - datetime.timedelta(days=30)
+        addmoney_info = Addmoney_info.objects.filter(user=user, Date__gte=one_month_ago, Date__lte=todays_date)
+        total_expense = addmoney_info.filter(add_money="Expense").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        total_income = addmoney_info.filter(add_money="Income").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        amount_saved = total_income - total_expense
+        overspent_amount = max(0, total_expense - user.userprofile.Savings)
+
+        context = {
+            'user_profile': user.userprofile,
+            'total_expense': total_expense,
+            'amount_saved': amount_saved,
+            'overspent_amount': overspent_amount
+        }
+        return render(request, 'home/monthly_expense.html', context)
+    return redirect('home')
