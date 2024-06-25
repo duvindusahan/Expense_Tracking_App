@@ -141,7 +141,24 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <!-- Table content -->
+                                        <thead>
+                                            <tr>
+                                                <th>What you added</th>
+                                                <th>Amount</th>
+                                                <th>Category</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for transaction in transactions %}
+                                            <tr>
+                                                <td>{{ transaction.add_money }}</td>
+                                                <td>{{ transaction.quantity }}</td>
+                                                <td>{{ transaction.Category }}</td>
+                                                <td>{{ transaction.Date }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
