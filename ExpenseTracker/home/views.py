@@ -58,3 +58,6 @@ def index(request):
         }
         return render(request, 'home/index.html', context)
     return redirect('home')
+
+def register(request):
+    return render(request, 'home/register.html')
