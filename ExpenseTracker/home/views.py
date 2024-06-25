@@ -330,3 +330,40 @@ def check(request):
         user_exists = User.objects.filter(email=request.POST['email'])
         messages.error(request,"Email not registered, TRY AGAIN!!!")
         return redirect("/reset_password")
+
+def info_year(request):
+    if request.session.has_key('is_logged'):
+        user_id = request.session["user_id"]
+        user = User.objects.get(id=user_id)
+        todays_date = datetime.date.today()
+        one_year_ago = todays_date - datetime.timedelta(days=365)
+        addmoney_info = Addmoney_info.objects.filter(user=user, Date__gte=one_year_ago, Date__lte=todays_date)
+
+        # Calculate total expenses and income
+        total_expense = addmoney_info.filter(add_money="Expense").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        total_income = addmoney_info.filter(add_money="Income").aggregate(Sum('quantity'))['quantity__sum'] or 0
+        amount_saved = total_income - total_expense
+        overspent_amount = max(0, total_expense - user.userprofile.Savings)
+        net_balance = total_income - total_expense
+
+        # Prepare data for the pie chart
+        pie_chart_data = addmoney_info.values('Category').annotate(
+            total_amount=Sum('quantity', filter=Q(add_money='Expense'))
+        ).order_by('Category')
+
+        pie_chart_labels = [entry['Category'] for entry in pie_chart_data]
+        pie_chart_values = [entry['total_amount'] or 0 for entry in pie_chart_data]
+
+        context = {
+            'user_profile': user.userprofile,
+            'total_expense': total_expense,
+            'total_income': total_income,
+            'amount_saved': amount_saved,
+            'overspent_amount': overspent_amount,
+            'net_balance': net_balance,
+            'pie_chart_labels': pie_chart_labels,
+            'pie_chart_values': pie_chart_values,
+            'transactions': addmoney_info,
+        }
+        return render(request, 'home/yearly_expense.html', context)
+    return redirect('home')
