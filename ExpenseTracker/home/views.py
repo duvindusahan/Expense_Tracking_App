@@ -325,3 +325,8 @@ def weekly(request):
         addmoney_info.y = abs(y)
     return render(request,'home/weekly.html',{'addmoney_info':addmoney_info})
 
+def check(request):
+    if request.method == 'POST':
+        user_exists = User.objects.filter(email=request.POST['email'])
+        messages.error(request,"Email not registered, TRY AGAIN!!!")
+        return redirect("/reset_password")
