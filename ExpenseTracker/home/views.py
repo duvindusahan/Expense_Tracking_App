@@ -90,3 +90,6 @@ def tables(request):
 
 def addmoney(request):
     return render(request,'home/addmoney.html')
+
+def profile(request):
+    return render(request, 'home/profile.html', {'user': request.user})
