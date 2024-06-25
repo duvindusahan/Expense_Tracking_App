@@ -101,3 +101,18 @@ def profile_edit(request,id):
         # user1 = User.objects.get(id=user_id)
         return render(request,'home/profile_edit.html',{'add':add})
     return redirect("/home")
+
+def profile_update(request,id):
+    if request.session.has_key('is_logged'):
+        if request.method == "POST":
+            user = User.objects.get(id=id)
+            user.first_name = request.POST["fname"]
+            user.last_name = request.POST["lname"]
+            user.email = request.POST["email"]
+            user.userprofile.Savings = request.POST["Savings"]
+            user.userprofile.income = request.POST["income"]
+            user.userprofile.profession = request.POST["profession"]
+            user.userprofile.save()
+            user.save()
+            return redirect("/profile")
+    return redirect("/home") 
