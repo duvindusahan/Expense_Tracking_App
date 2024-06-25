@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +12,58 @@
         .bg-custom {
             background-color: #4e73df;
         }
+
+        .sidebar {
+            background-color: #3561e2;
+        }
+
         .sidebar .nav-item .nav-link {
             color: white;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .sidebar .nav-item .nav-link:hover {
+            background-color: #224abe;
+            color: #ffffff;
+        }
+
         .sidebar .nav-item .nav-link.active {
             color: #4e73df;
             background-color: white;
         }
+
+        .sidebar .sidebar-brand {
+            background-color: #224abe;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sidebar .sidebar-brand:hover {
+            background-color: #1a3d9f;
+            color: #ffffff;
+        }
+
+        .sidebar .sidebar-divider {
+            border-top: 1px solid #476cd1;
+        }
+
+        .card-header {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .text-center button {
+            background-color: #224abe;
+        }
+
+        .text-center button:hover {
+            background-color: #1a3d9f;
+        }
     </style>
 </head>
+
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
@@ -28,15 +72,15 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
                 <div class="sidebar-brand-text mx-3">Track My Spend</div>
             </a>
-                       <!-- Divider -->
-                       <hr class="sidebar-divider my-0">
-                       <!-- Nav Item - Dashboard -->
-                       <li class="nav-item">
-                           <a class="nav-link" href="{% url 'index' %}">
-                               <i class="fas fa-fw fa-tachometer-alt"></i>
-                               <span>Dashboard</span></a>
-                       </li>
-                                  <!-- Divider -->
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Profile -->
             <li class="nav-item">
@@ -44,40 +88,40 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Profile</span></a>
             </li>
-                       <!-- Nav Item - Record -->
-                       <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecords" aria-expanded="true" aria-controls="collapseRecords">
-                            <i class="fas fa-fw fa-book"></i>
-                            <span>Record</span>
-                        </a>
-                        <div id="collapseRecords" class="collapse" aria-labelledby="headingRecords" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <a class="collapse-item" href="{% url 'expense_month' %}">Monthly</a>
-                                <a class="collapse-item" href="{% url 'info_year' %}">Yearly</a>
-                            </div>
-                        </div>
-                    </li>
-                               <!-- Divider -->
+            <!-- Nav Item - Record -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecords" aria-expanded="true" aria-controls="collapseRecords">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Record</span>
+                </a>
+                <div id="collapseRecords" class="collapse" aria-labelledby="headingRecords" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'expense_month' %}">Monthly</a>
+                        <a class="collapse-item" href="{% url 'info_year' %}">Yearly</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
             <hr class="sidebar-divider">
+            <!-- Nav Item - History -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'history' %}">
+                    <i class="fas fa-fw fa-history"></i>
+                    <span>History</span></a>
+            </li>
             <!-- Nav Item - Info -->
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'info' %}">
                     <i class="fas fa-fw fa-info-circle"></i>
                     <span>Info</span></a>
             </li>
-                       <!-- Nav Item - History -->
-                       <li class="nav-item">
-                        <a class="nav-link" href="{% url 'history' %}">
-                            <i class="fas fa-fw fa-history"></i>
-                            <span>History</span></a>
-                    </li>
-                    <!-- Sidebar Toggler (Sidebar) -->
-                    <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                    </div>
-                </ul>
-                <!-- End of Sidebar -->
-                         <!-- Content Wrapper -->
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
@@ -94,42 +138,54 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user.username }}</span>
                                 <img class="img-profile rounded-circle" src="https://via.placeholder.com/60">
                             </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{% url 'profile' %}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'handleLogout' %}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </nav>
                 <!-- End of Topbar -->
-                                <!-- Begin Page Content -->
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Info</h1>
+                        <h1 class="h3 mb-0 font-weight-bold text-gray-800">Informations</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Info</li>
                         </ol>
                     </div>
-                                       <!-- Content Row -->
-                                       <div class="row">
-                                        <div class="col-lg-12 mb-4">
-                                            <!-- Info Card -->
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header py-3">
-                                                    <h6 class="m-0 font-weight-bold text-primary">About Expense Tracker</h6>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Welcome to Track My Spend Expense Tracker, your personal financial assistant. This application helps you manage your expenses and income efficiently. Here’s how you can make the most out of it:</p>
-                                                    <ul>
-                                                        <li><strong>Add Transactions:</strong> Record your daily expenses and income to keep track of your financial activities.</li>
-                                                        <li><strong>View Reports:</strong> Analyze your spending habits with weekly, monthly, and yearly reports.</li>
-                                                        <li><strong>Manage Categories:</strong> Categorize your expenses for better insights and management.</li>
-                                                        <li><strong>Set Savings Goals:</strong> Plan and achieve your savings goals with our tracking feature.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                                                       <!-- Tips Card -->
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <!-- Info Card -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tips for Managing Your Finances</h6>
+                                    <h6 class="m-0 font-weight-bold">About Expense Tracker</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>Welcome to Track My Spend Expense Tracker, your personal financial assistant. This application helps you manage your expenses and income efficiently. Here’s how you can make the most out of it:</p>
+                                    <ul>
+                                        <li><strong>Add Transactions:</strong> Record your daily expenses and income to keep track of your financial activities.</li>
+                                        <li><strong>View Reports:</strong> Analyze your spending habits with weekly, monthly, and yearly reports.</li>
+                                        <li><strong>Manage Categories:</strong> Categorize your expenses for better insights and management.</li>
+                                        <li><strong>Set Savings Goals:</strong> Plan and achieve your savings goals with our tracking feature.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Tips Card -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold">Tips for Managing Your Finances</h6>
                                 </div>
                                 <div class="card-body">
                                     <p>Effective financial management is key to achieving your financial goals. Here are some tips to help you manage your finances better:</p>
@@ -142,32 +198,33 @@
                                     </ul>
                                 </div>
                             </div>
-                                                       <!-- Contact Card -->
-                                                       <div class="card shadow mb-4">
-                                                        <div class="card-header py-3">
-                                                            <h6 class="m-0 font-weight-bold text-primary">Contact Us</h6>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p>If you have any questions or need assistance, feel free to reach out to us:</p>
-                                                            <ul>
-                                                                <li>Email: support@expensetracker.com</li>
-                                                                <li>Phone: +123 456 7890</li>
-                                                                <li>Address: 123 Finance Street, Money City, Country</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.container-fluid -->
-                                    </div>
-                                    <!-- End of Main Content -->
+                            <!-- Contact Card -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold">Contact Us</h6>
                                 </div>
-                                <!-- End of Content Wrapper -->
+                                <div class="card-body">
+                                    <p>If you have any questions or need assistance, feel free to reach out to us:</p>
+                                    <ul>
+                                        <li>Email: support@expensetracker.com</li>
+                                        <li>Phone: +9470 699 5265</li>
+                                        <li>Address: University of Moratuwa, Katubedda, Sri Lanka.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <!-- End of Page Wrapper -->
-                            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></script>
-                        </body>
-                        </html>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></script>
+</body>
+
+</html>

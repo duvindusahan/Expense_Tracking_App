@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('static\img\car.jpg');
+            background-image: url("../static/img/login.jpg");
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="signup-container">
-        <h2>Expense Tracker by DataFlair Create Account</h2>
+        <h2>Track My Spend Account</h2>
         <form method="post" action="{% url 'handleSignup' %}">
             {% csrf_token %}
             <div class="form-group">

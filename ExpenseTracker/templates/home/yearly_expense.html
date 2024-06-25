@@ -11,12 +11,45 @@
         .bg-custom {
             background-color: #4e73df;
         }
+        .sidebar {
+            background-color: #3561e2;
+        }
+
         .sidebar .nav-item .nav-link {
             color: white;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        .sidebar .nav-item .nav-link:hover {
+            background-color: #224abe;
+            color: #ffffff;
+        }
+
         .sidebar .nav-item .nav-link.active {
             color: #4e73df;
             background-color: white;
+        }
+
+        .sidebar .sidebar-brand {
+            background-color: #224abe;
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .sidebar .sidebar-brand:hover {
+            background-color: #1a3d9f;
+            color: #ffffff;
+        }
+
+        .sidebar .sidebar-divider {
+            border-top: 1px solid #476cd1;
+        }
+
+        .card-header-custom {
+            background-color: #4e73df;
+            color: white;
         }
     </style>
 </head>
@@ -34,8 +67,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
+                    <span>Dashboard</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -43,8 +75,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'profile' %}">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Profile</span>
-                </a>
+                    <span>Profile</span></a>
             </li>
             <!-- Nav Item - Record -->
             <li class="nav-item">
@@ -61,19 +92,17 @@
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Nav Item - Info -->
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'info' %}">
-                    <i class="fas fa-fw fa-info-circle"></i>
-                    <span>Info</span>
-                </a>
-            </li>
             <!-- Nav Item - History -->
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'history' %}">
                     <i class="fas fa-fw fa-history"></i>
-                    <span>History</span>
-                </a>
+                    <span>History</span></a>
+            </li>
+            <!-- Nav Item - Info -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'info' %}">
+                    <i class="fas fa-fw fa-info-circle"></i>
+                    <span>Info</span></a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -98,6 +127,18 @@
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user.username }}</span>
                                 <img class="img-profile rounded-circle" src="https://via.placeholder.com/60">
                             </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{% url 'profile' %}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'handleLogout' %}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -106,7 +147,7 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Yearly Expense</h1>
+                        <h1 class="h3 mb-0 font-weight-bold text-gray-800">Yearly Expense</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{% url 'index' %}">Dashboard</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Yearly Expense</li>
@@ -118,8 +159,8 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Expense per Category</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between card-header-custom">
+                                    <h6 class="m-0 font-weight-bold">Expense per Category</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -133,8 +174,8 @@
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Yearly Record</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between card-header-custom">
+                                    <h6 class="m-0 font-weight-bold">Yearly Record</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -148,7 +189,40 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <!-- Transactions Table -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 card-header-custom">
+                                    <h6 class="m-0 font-weight-bold">Transactions</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Description</th>
+                                                    <th>Category</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for transaction in transactions %}
+                                                <tr>
+                                                    <td>{{ transaction.Date }}</td>
+                                                    <td>{{ transaction.add_money }}</td>
+                                                    <td>{{ transaction.Category }}</td>
+                                                    <td>{{ transaction.quantity }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
@@ -169,11 +243,11 @@
         var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ["Necessities", "Others"],
+                labels: {{ pie_chart_labels|safe }},
                 datasets: [{
-                    data: [55, 30],
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                    data: {{ pie_chart_values|safe }},
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'],
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#be2617', '#6c757d'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
             },
