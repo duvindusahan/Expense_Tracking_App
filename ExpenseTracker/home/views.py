@@ -179,3 +179,18 @@ def handleLogout(request):
         logout(request)
         messages.success(request, " Successfully logged out")
         return redirect('home')
+
+def addmoney_submission(request):
+    if request.session.has_key('is_logged'):
+        if request.method == "POST":
+            user_id = request.session["user_id"]
+            user1 = User.objects.get(id=user_id)
+            add_money = request.POST["add_money"]
+            quantity = request.POST["quantity"]
+            Date = request.POST["Date"]
+            Category = request.POST["Category"]
+            add = Addmoney_info(user=user1, add_money=add_money, quantity=quantity, Date=Date, Category=Category)
+            add.save()
+            messages.success(request, "Transaction added successfully")
+            return redirect('/index')
+    return redirect('/index')
