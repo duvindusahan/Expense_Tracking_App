@@ -80,5 +80,12 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div> 
         </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- Topbar -->
+            </div>
+        </div>       
     </div>
     
