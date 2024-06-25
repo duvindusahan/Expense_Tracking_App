@@ -93,3 +93,11 @@ def addmoney(request):
 
 def profile(request):
     return render(request, 'home/profile.html', {'user': request.user})
+
+def profile_edit(request,id):
+    if request.session.has_key('is_logged'):
+        add = User.objects.get(id=id)
+        # user_id = request.session["user_id"]
+        # user1 = User.objects.get(id=user_id)
+        return render(request,'home/profile_edit.html',{'add':add})
+    return redirect("/home")
