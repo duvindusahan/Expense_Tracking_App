@@ -87,3 +87,6 @@ def tables(request):
         addmoney = Addmoney_info.objects.filter(user=user).order_by('-Date')
         return render(request,'home/tables.html',{'addmoney':addmoney})
     return redirect('home')
+
+def addmoney(request):
+    return render(request,'home/addmoney.html')
