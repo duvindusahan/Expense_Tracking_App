@@ -243,3 +243,18 @@
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </tfoot>
+                                                            <tbody>
+                                                                {% for transaction in page_obj %}
+                                                                <tr>
+                                                                    <td>{{ transaction.add_money }}</td>
+                                                                    <td>{{ transaction.quantity }}</td>
+                                                                    <td>{{ transaction.Category }}</td>
+                                                                    <td>{{ transaction.Date }}</td>
+                                                                    <td>
+                                                                        <a href="{% url 'expense_edit' transaction.id %}" class="btn btn-success btn-sm">Edit</a>
+                                                                        <a href="{% url 'expense_delete' transaction.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
