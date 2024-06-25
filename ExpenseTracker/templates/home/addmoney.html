@@ -9,4 +9,6 @@
 <body>
     <div class="container mt-5">
         <h2>Add Expense or Income</h2>
-    
+        <form method="post" action="{% url 'addmoney_submission' %}">
+            {% csrf_token %}
+        
