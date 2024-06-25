@@ -101,7 +101,22 @@
                         </li>                        
                     </ul>
                 </nav>       
-                <!-- End of Topbar -->         
+                <!-- End of Topbar -->
+                 <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Yearly Expense</h1>
+                        <ol class="breadcrumb">
+                            <!-- Breadcrumbs -->
+                        </ol>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Pie Chart -->
+                        <!-- Summary -->
+                    </div>
+                </div>                         
             </div>
         </div>       
     </div>
