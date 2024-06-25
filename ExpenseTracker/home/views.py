@@ -67,3 +67,13 @@ def password(request):
 
 def charts(request):
     return render(request,'home/charts.html')
+
+def search(request):
+    if request.session.has_key('is_logged'):
+        user_id = request.session["user_id"]
+        user = User.objects.get(id=user_id)
+        fromdate = request.GET['fromdate']
+        todate = request.GET['todate']
+        addmoney = Addmoney_info.objects.filter(user=user, Date__range=[fromdate,todate]).order_by('-Date')
+        return render(request,'home/tables.html',{'addmoney':addmoney})
+    return redirect('home')
