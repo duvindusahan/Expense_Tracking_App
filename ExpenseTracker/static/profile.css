@@ -1,6 +1,9 @@
 /* General Styles */
 body {
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    background-image: url("../static/img/login.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Profile Container */
@@ -8,7 +11,7 @@ body {
     padding: 3%;
     margin: 3% 0;
     border-radius: 0.5rem;
-    background: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* Profile Image Styles */
@@ -29,7 +32,7 @@ body {
     border: none;
     border-radius: 0;
     font-size: 15px;
-    background: #212529b8;
+    background: black;
 }
 
 .profile-img .file input {
