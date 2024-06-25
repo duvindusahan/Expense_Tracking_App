@@ -64,3 +64,6 @@ def register(request):
 
 def password(request):
     return render(request,'home/password.html')
+
+def charts(request):
+    return render(request,'home/charts.html')
